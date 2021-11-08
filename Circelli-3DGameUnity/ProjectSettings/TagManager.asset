@@ -3,7 +3,8 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - CinemachineTarget
   layers:
   - Default
   - TransparentFX
@@ -22,10 +23,10 @@ TagManager:
   - PostProcessing
   - 
   - MainGround
-  - 
-  - 
-  - 
-  - 
+  - Floor 1
+  - Floor 2
+  - Floor 3
+  - Floor 4
   - 
   - 
   - 
