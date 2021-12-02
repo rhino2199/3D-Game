@@ -36,6 +36,14 @@
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "FlashLight",
+                    "type": "Button",
+                    "id": "b0145c63-71c0-4932-8b3f-a3b7b285eff4",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -212,6 +220,17 @@
                     "processors": "",
                     "groups": "Gamepad",
                     "action": "Sprint",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7af1e0a8-2996-4d9c-97cf-ead09ddba4c5",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyboardMouse",
+                    "action": "FlashLight",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

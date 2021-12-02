@@ -73,6 +73,11 @@ namespace StarterAssets
 
 		private const float _threshold = 0.01f;
 
+		//Flashlight
+		public GameObject FLObject;
+		public GameObject FLOnImage;
+		public GameObject FLOffImage;
+
 		private void Awake()
 		{
 			// get a reference to our main camera
@@ -110,6 +115,8 @@ namespace StarterAssets
 			Vector3 spherePosition = new Vector3(transform.position.x, transform.position.y - GroundedOffset, transform.position.z);
 			Grounded = Physics.CheckSphere(spherePosition, GroundedRadius, GroundLayers, QueryTriggerInteraction.Ignore);
 		}
+
+		
 
 		private void CameraRotation()
 		{
