@@ -8,13 +8,29 @@ public class FlashLightControl : MonoBehaviour
     public GameObject FlashLight;
     public GameObject FLOnImage;
     public GameObject FLOffImage;
+    bool FlashLightOn;
+
+    private void Awake()
+    {
+        FlashLightOn = false;
+    }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButton(323))
+        if (Input.GetKeyDown(KeyCode.F))
         {
-            FlashLight.SetActive(true); 
+            FlashLightOn = !FlashLightOn;
+            Flashlight();
+        }
+    }
+
+    void Flashlight()
+    {
+
+        if(FlashLightOn)
+        {
+            FlashLight.SetActive(true);
             FLOnImage.SetActive(true);
             FLOffImage.SetActive(false);
         } else
