@@ -8,21 +8,42 @@ public class FlashLightControl : MonoBehaviour
     public GameObject FlashLight;
     public GameObject FLOnImage;
     public GameObject FLOffImage;
-    bool FlashLightOn;
+    public bool FlashLightOn;
+    public bool Dead;
 
     private void Awake()
     {
-        FlashLightOn = false;
+        FlashLightOn = true;
+        Dead = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.F))
+        if (!Dead)
         {
-            FlashLightOn = !FlashLightOn;
+            if (Input.GetKeyDown(KeyCode.F))
+            {
+                FlashLightOn = !FlashLightOn;
+                Flashlight();
+            }
+        }
+        
+    }
+
+    public void BatteriesDead()
+    {
+        Dead = true;
+        if (FlashLightOn)
+        {
+            FlashLightOn = false;
             Flashlight();
         }
+    }
+
+    public void FoundBattery()
+    {
+        Dead = false;
     }
 
     void Flashlight()
