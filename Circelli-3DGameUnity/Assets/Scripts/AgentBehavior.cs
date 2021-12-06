@@ -26,20 +26,15 @@ public class AgentBehavior : MonoBehaviour
 
     public void nextDestination()
     {
-        Destination = Points[currentPoint];
         currentPoint += 1;
+        Destination = Points[currentPoint % Points.Length];
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(ThisAgent.transform.position == Destination.position)
-        {
-            nextDestination();
-        }
-        Destination = Points[currentPoint % 3];
         ThisAgent.SetDestination(Destination.position); //set destination position 
-        Debug.Log(currentPoint);
+        //Debug.Log(currentPoint);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -48,7 +43,6 @@ public class AgentBehavior : MonoBehaviour
         {
             other.GetComponent<BatteryManager>().emptyBatteries();
         }
-        Debug.Log("hit");
         if(other.tag == "Destination")
         {
             nextDestination();

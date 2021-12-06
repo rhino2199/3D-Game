@@ -50,19 +50,21 @@ public class BatteryManager : MonoBehaviour
                 }
             }
 
-            if(currentBattery == 0)
-            {
-                if (Battery2)
-                {
-                    Battery2 = false;
-                    currentBattery = BatteryTime;
-                    BatteryCurrentTime = BatteryTime;
-                } else
-                {
-                    Flashlight.BatteriesDead();
-                }
-            }
+            
         }
+        if(currentBattery == 0)
+        {
+           if (Battery2)
+           {
+               Battery2 = false;
+               currentBattery = BatteryTime;
+               BatteryCurrentTime = BatteryTime;
+           } else
+           {
+              Flashlight.BatteriesDead();
+           }
+       }
+        Debug.Log(currentBattery);
     }
 
     public void fillBatteries()
@@ -94,6 +96,8 @@ public class BatteryManager : MonoBehaviour
             BatteryMask2.Translate(move);
             BatteryUI2.Translate(-1 * move);
         }
+        Debug.Log(currentBattery + " " + Battery2);
+
     }
 
     public void emptyBatteries()
@@ -115,16 +119,14 @@ public class BatteryManager : MonoBehaviour
         {
             BatteryMask2.Translate(move);
             BatteryUI2.Translate(move * -1);
-            if(currentBattery == 0)
-            {
-                Battery2 = false;
-            }
         }
         else
         {
             BatteryMask.Translate(move);
             BatteryUI1.Translate(move * -1);
         }
+
+        Debug.Log(currentBattery + " " + Battery2);
        
     }
 
@@ -137,6 +139,4 @@ public class BatteryManager : MonoBehaviour
             fillBatteries();
         }
     }
-
-
 }
