@@ -47,8 +47,8 @@ public class AgentBehavior : MonoBehaviour
         if(other.tag == "Player")
         {
             other.GetComponent<BatteryManager>().emptyBatteries();
-        } 
-
+        }
+        Debug.Log("hit");
         if(other.tag == "Destination")
         {
             nextDestination();
