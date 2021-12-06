@@ -4,5 +4,6 @@ public enum FSMStateType
     Start,
     Pause,
     Play,
-    End
+    End,
+    Empty
 }

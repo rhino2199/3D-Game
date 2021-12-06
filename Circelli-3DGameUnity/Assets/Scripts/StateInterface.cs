@@ -8,7 +8,5 @@ public interface StateInterface
 
     void OnEnter();
     void OnExit();
-
-    FSMStateType ShouldTransitionToState();
 }
 
