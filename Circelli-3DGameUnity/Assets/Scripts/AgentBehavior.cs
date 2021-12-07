@@ -15,6 +15,7 @@ public class AgentBehavior : MonoBehaviour
     private NavMeshAgent ThisAgent = null;
     int currentPoint;
     public Transform[] Points = new Transform[3];
+    public float CollCool;
 
 
     private void Awake()
@@ -22,30 +23,42 @@ public class AgentBehavior : MonoBehaviour
         ThisAgent = GetComponent<NavMeshAgent>(); //Get navmesh component 
         currentPoint = 0;
         Destination = Points[currentPoint];
+        CollCool = 1.0f;
     }
 
     public void nextDestination()
     {
         currentPoint += 1;
         Destination = Points[currentPoint % Points.Length];
+        Debug.Log(currentPoint);
     }
 
     // Update is called once per frame
     void Update()
     {
         ThisAgent.SetDestination(Destination.position); //set destination position 
-        //Debug.Log(currentPoint);
+        CollCool -= Time.deltaTime;
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "Player")
+        if(CollCool <= 0)
         {
-            other.GetComponent<BatteryManager>().emptyBatteries();
+            if (other.tag == "Player")
+            {
+                other.GetComponent<BatteryManager>().emptyBatteries();
+                CollCool = 1.0f;
+
+            }
+            if (other.tag == "Destination")
+            {
+                nextDestination();
+                Debug.Log("hit");
+                CollCool = 1.0f;
+            }
+            
         }
-        if(other.tag == "Destination")
-        {
-            nextDestination();
-        }
+
+        
     }
 }

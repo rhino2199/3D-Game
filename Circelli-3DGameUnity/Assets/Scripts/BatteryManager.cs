@@ -64,7 +64,6 @@ public class BatteryManager : MonoBehaviour
               Flashlight.BatteriesDead();
            }
        }
-        Debug.Log(currentBattery);
     }
 
     public void fillBatteries()
@@ -119,14 +118,23 @@ public class BatteryManager : MonoBehaviour
         {
             BatteryMask2.Translate(move);
             BatteryUI2.Translate(move * -1);
+            if(currentBattery == 0)
+            {
+                Battery2 = false;
+                currentBattery = BatteryTime;
+                BatteryCurrentTime = BatteryTime;
+            }
         }
         else
         {
             BatteryMask.Translate(move);
             BatteryUI1.Translate(move * -1);
+            if(currentBattery == 0)
+            {
+                Flashlight.BatteriesDead();
+            }
         }
 
-        Debug.Log(currentBattery + " " + Battery2);
        
     }
 
@@ -134,7 +142,6 @@ public class BatteryManager : MonoBehaviour
     {
         if(collision.gameObject.tag == "Collectible")
         {
-            Debug.Log("Collide");
             GameObject.Destroy(collision.gameObject);
             fillBatteries();
         }
