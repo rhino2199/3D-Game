@@ -6,30 +6,39 @@ public class ThunderControl : MonoBehaviour
 {
     public GameObject ThunderLight;
     public AudioSource ThunderSound;
-    float FlashLength = 0.5f;
+    float FlashLength = 0.15f;
     float CurrentFlash;
+    float TimeToNextStrike;
 
 
     private void Awake()
     {
         ThunderLight.SetActive(false);
         CurrentFlash = FlashLength;
-        InvokeRepeating("Thunder", 5, Random.Range(5, 15));
+        Thunder();
     }
 
     // Update is called once per frame
     void Update()
     {
         CurrentFlash -= Time.deltaTime;
-        if(CurrentFlash < 0)
+        TimeToNextStrike -= Time.deltaTime;
+        if(TimeToNextStrike <= 0)
         {
-            CurrentFlash = FlashLength;
             Thunder();
         }
+
+        if(CurrentFlash < 0)
+        {
+            ThunderEnd();
+        }
+       
     }
 
     void Thunder()
     {
+        CurrentFlash = FlashLength;
+        TimeToNextStrike = Random.Range(10, 30);
         ThunderLight.SetActive(true);
         ThunderSound.Play();
     }
