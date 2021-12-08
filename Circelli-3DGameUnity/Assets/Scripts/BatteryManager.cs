@@ -30,6 +30,20 @@ public class BatteryManager : MonoBehaviour
 
     }
 
+    public void BatteriesReset()
+    {
+        if(Battery2 &&  currentBattery != 30)
+        {
+            fillBatteries();
+        } else if (!Battery2)
+        {
+            fillBatteries();
+            fillBatteries();
+        }
+        BatteriesFound = 0;
+        BatteryCounter.text = "Batteries Found: " + BatteriesFound + "/9";
+    }
+
     private void Update()
     {
         if (Flashlight.FlashLightOn)

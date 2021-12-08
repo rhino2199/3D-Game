@@ -7,8 +7,17 @@ public class StartState : MonoBehaviour, StateInterface
     public FSMStateType StateName { get { return FSMStateType.Start; } }
     public GameObject[] StartUI;
     public GameObject[] CreditsUI;
+    public GameObject[] StartStory;
+    GameObject[] Batteries;
+    public GameObject Player;
+    public BatteryManager BatteryManager;
 
 
+    private void Awake()
+    {
+        Batteries = GameObject.FindGameObjectsWithTag("Collectible");
+
+    }
 
     public void OnEnter()
     {
@@ -21,6 +30,21 @@ public class StartState : MonoBehaviour, StateInterface
         {
             obj.SetActive(false);
         }
+
+        foreach (GameObject obj in StartStory)
+        {
+            obj.SetActive(false);
+        }
+
+        foreach (GameObject obj in Batteries)
+        {
+            obj.SetActive(true);
+        }
+        Player.SetActive(true);
+        Player.GetComponent<Transform>().position = new Vector3(0, 0, -8);
+        Player.GetComponent<Transform>().rotation = new Quaternion();
+        Player.SetActive(false);
+        BatteryManager.BatteriesReset(); 
     }
 
     public void Credits()
@@ -49,11 +73,33 @@ public class StartState : MonoBehaviour, StateInterface
         }
     }
 
+    private void First()
+    {
+        StartStory[0].SetActive(false);
+        StartStory[1].SetActive(true);
+    }
+
+    private void Second()
+    {
+        StartStory[1].SetActive(false);
+        StartStory[2].SetActive(true);
+    }
+
+    private void Last()
+    {
+        StartStory[2].SetActive(false);
+    }
+
     public void OnExit()
     {
         foreach (GameObject obj in StartUI)
         {
             obj.SetActive(false);
         }
+
+        StartStory[0].SetActive(true);
+        Invoke("First", 5);
+        Invoke("Second", 10);
+        Invoke("Last", 15);
     }
 }

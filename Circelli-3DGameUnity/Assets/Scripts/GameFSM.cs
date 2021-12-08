@@ -45,6 +45,23 @@ public class GameFSM : MonoBehaviour
         TransitionToState(FSMStateType.Play);
     }
 
+    public void StartToPlay()
+    {
+        CurrentState.OnExit();
+        CurrentState = GetState(FSMStateType.Play);
+        Invoke("Enter", 15);
+    }
+
+    public void ChangeToEnd()
+    {
+        TransitionToState(FSMStateType.End);
+    }
+
+    private void Enter()
+    {
+        CurrentState.OnEnter();
+    }
+
     public void ChangeToPause()
     {
         TransitionToState(FSMStateType.Pause);

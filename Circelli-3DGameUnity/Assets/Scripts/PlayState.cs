@@ -8,17 +8,21 @@ public class PlayState : MonoBehaviour, StateInterface
 
     public GameObject Player;
     public GameObject[] PlayUI;
-    public GameObject Enemies;
+    public GameObject[] Enemies;
     
 
     private void Awake()
     {
         Player.SetActive(false);
+        Enemies = GameObject.FindGameObjectsWithTag("Ghost");
         foreach (GameObject obj in PlayUI)
         {
             obj.SetActive(false);
         }
-        Enemies.SetActive(false);
+        foreach (GameObject obj in Enemies)
+        {
+            obj.SetActive(false);
+        }
     }
 
     public void OnEnter()
@@ -28,7 +32,10 @@ public class PlayState : MonoBehaviour, StateInterface
         {
             obj.SetActive(true);
         }
-        Enemies.SetActive(true);
+        foreach (GameObject obj in Enemies)
+        {
+            obj.SetActive(true);
+        }
     }
     public void OnExit()
     {
@@ -37,6 +44,9 @@ public class PlayState : MonoBehaviour, StateInterface
         {
             obj.SetActive(false);
         }
-        Enemies.SetActive(false);
+        foreach (GameObject obj in Enemies)
+        {
+            obj.SetActive(false);
+        }
     }
 }
