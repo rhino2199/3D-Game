@@ -589,3 +589,4 @@ Received Import Request.
 Start importing Assets/Textures/GameImage.png using Guid(e00853c9dc38bc64f93500d79a9d2c27) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6e4bb6c054490006b5a11dda8a5a836d') in 0.017265 seconds 
   Import took 0.023445 seconds .
 
+AssetImportWorkerClient::OnTransportError - code=2 error=End of file
